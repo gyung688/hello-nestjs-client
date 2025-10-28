@@ -1,10 +1,18 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { MongooseModule } from '@nestjs/mongoose';
+import { BlogController } from './blog.controller';
+import { BlogService } from './blog.service';
+import { BlogFileRepository, BlogMongoRepository } from './blog.repository';
+import { Blog, BlogSchema } from './blog.schema';
 
 @Module({
-  imports: [],
-  controllers: [AppController],
-  providers: [AppService],
+  imports: [
+    MongooseModule.forRoot(
+        'mongodb://localhost/nestjs-blog-tutorial',
+    ),
+    MongooseModule.forFeature([{ name: Blog.name, schema: BlogSchema }]),
+  ],
+  controllers: [BlogController],
+  providers: [BlogService, BlogFileRepository, BlogMongoRepository],
 })
 export class AppModule {}
