@@ -1,18 +1,14 @@
-import {
-  Controller,
-  Param,
-  Body,
-  Delete,
-  Get,
-  Post,
-  Put,
-} from '@nestjs/common';
+import { Controller, Param, Body, Delete, Get, Post, Put } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 
 import { BlogService } from './blog.service';
 
 @Controller('blog')
 export class BlogController {
-  constructor(private blogService: BlogService) {}
+  constructor(
+    private configService: ConfigService,
+    private blogService: BlogService,
+  ) {}
 
   @Get()
   getAllPosts() {
