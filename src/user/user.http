@@ -1,0 +1,21 @@
+POST htpp://localhost:3000/user/create
+content-type: application/json
+
+{
+  "username": "andy",
+  "password": "mypassword",
+  "email": "andy@asdf.com"
+}
+
+GET http://localhost:3000/user/getUser/andy@asdf.com
+
+PUT http://localhost:3000/user/update/andy@asdf.com
+content-type: application/json
+
+{
+  "username": "andy2",
+  "password": "mypassword2",
+  "email": "andy2@asdf.com"
+}
+
+DELETE http://localhost:3000/user/delete/andy2@asdf.com

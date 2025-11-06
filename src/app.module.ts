@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+
 import config from './configs/config';
 // import { MongooseModule } from '@nestjs/mongoose';
 import { BlogController } from './blog.controller';
@@ -8,6 +10,7 @@ import { BlogFileRepository, BlogMongoRepository } from './blog.repository';
 // import { Blog, BlogSchema } from './blog.schema';
 import { WeatherModule } from './weather/weather.module';
 import { UserModule } from './user/user.module';
+import { User } from './user/user.entity';
 
 console.log('env: ' + process.env.NODE_ENV);
 
@@ -19,6 +22,13 @@ console.log('env: ' + process.env.NODE_ENV);
       load: [config], // custom configuration file
       cache: true,
       expandVariables: true,
+    }),
+    TypeOrmModule.forRoot({
+      type: 'sqlite',
+      database: 'nest-auth-test.sqlite',
+      entities: [User],
+      synchronize: true,
+      logging: true,
     }),
     WeatherModule,
     UserModule,
