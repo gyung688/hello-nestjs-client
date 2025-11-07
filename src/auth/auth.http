@@ -1,0 +1,46 @@
+POST http://localhost:3000/auth/register
+content-type: application/json
+
+{
+  "username": "newuser",
+  "password": "securepassword",
+  "email": "andy1@asdf.com"
+}
+
+POST http://localhost:3000/auth/login
+content-type: application/json
+
+{
+  "password": "securepassword",
+  "email": "andy1@asdf.com"
+}
+
+POST http://localhost:3000/auth/login2
+content-type: application/json
+
+{
+  "username": "newuser2",
+  "password": "securepassword"
+}
+
+GET http://localhost:3000/auth/test-guard
+
+## LOGIN3 - session
+POST http://localhost:3000/auth/login3
+content-type: application/json
+
+{
+  "username": "newuser3",
+  "password": "securepassword"
+}
+
+## LOGIN3 - wrong password
+POST http://localhost:3000/auth/login3
+content-type: application/json
+
+{
+  "username": "newuser3",
+  "password": "secure"
+}
+
+GET http://localhost:3000/auth/test-guard2

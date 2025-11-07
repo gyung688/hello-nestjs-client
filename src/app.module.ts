@@ -11,6 +11,7 @@ import { BlogFileRepository, BlogMongoRepository } from './blog.repository';
 import { WeatherModule } from './weather/weather.module';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 console.log('env: ' + process.env.NODE_ENV);
 
@@ -32,6 +33,7 @@ console.log('env: ' + process.env.NODE_ENV);
     }),
     WeatherModule,
     UserModule,
+    AuthModule,
     // MongooseModule.forRoot(
     //     'mongodb://localhost/nestjs-blog-tutorial',
     // ),
