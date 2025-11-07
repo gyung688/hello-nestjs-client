@@ -10,9 +10,7 @@ export class AuthService {
   async register(userDto: CreateUserDto) {
     const user = await this.userService.getUser(userDto.email);
     if (user) {
-      throw new HttpException(
-        'User with this email already exists',
-        HttpStatus.BAD_REQUEST);
+      throw new HttpException('User with this email already exists', HttpStatus.BAD_REQUEST);
     }
 
     const encryptedPassword = await bcrypt.hashSync(userDto.password, 10); // 암호화처리 10번하겠다
@@ -20,7 +18,7 @@ export class AuthService {
     try {
       const user = await this.userService.createUser({
         ...userDto,
-        password: encryptedPassword
+        password: encryptedPassword,
       });
 
       user.password = undefined;

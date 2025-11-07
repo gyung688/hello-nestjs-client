@@ -14,15 +14,12 @@ export class AuthController {
 
   @Post('login')
   async login(@Request() req, @Response() res) {
-    const userInfo = await this.authService.validateUser(
-      req.body.email,
-      req.body.password,
-    );
+    const userInfo = await this.authService.validateUser(req.body.email, req.body.password);
 
     if (userInfo) {
       res.cookie('login', JSON.stringify(userInfo), {
         httpOnly: false,
-      maxAge: 1000  * 60 * 60 * 24 * 7,
+        maxAge: 1000 * 60 * 60 * 24 * 7,
       });
     }
     return res.send({ message: 'login success' });
@@ -57,5 +54,16 @@ export class AuthController {
   @Get('test-guard2')
   testGuardWithSession(@Request() req) {
     return req.user;
+  }
+
+  @Get('to-google')
+  @UseGuards(GoogleAuthGuard)
+  async googleAuth(@Request() req) {}
+
+  @Get('google')
+  @UseGuards(GoogleAuthGuard)
+  async googleAuthRedirect(@Request() req, @Response() res) {
+    const { user } = req;
+    return res.send(user);
   }
 }

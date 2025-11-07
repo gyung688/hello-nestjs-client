@@ -31,4 +31,18 @@ export class UserService {
   deleteUser(email: string) {
     return this.userRepository.delete({ email });
   }
+
+  async findByEmailOrSave(email, username, providerId): Promimse<User> {
+    const foundUser = await this.getUser(email);
+    if (foundUser) {
+      return foundUser;
+    }
+
+    const newUser = await this.userRepository.save({
+      email,
+      username,
+      providerId,
+    });
+    return newUser;
+  }
 }

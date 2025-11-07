@@ -29,5 +29,4 @@ export class UserController {
   deleteUser(@Param('email') email: string) {
     return this.userService.deleteUser(email);
   }
-
 }

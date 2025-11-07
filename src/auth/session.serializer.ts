@@ -14,10 +14,7 @@ export class SessionSerializer extends PassportSerializer {
   }
 
   // 세션 정보로부터 유저 정보 복원
-  async deserializeUser(
-    payload: any,
-    done: (err: Error, payload: any) => void,
-  ): Promise<any> {
+  async deserializeUser(payload: any, done: (err: Error, payload: any) => void): Promise<any> {
     const user = await this.userService.getUser(payload);
     if (!user) {
       done(new Error('No user found'), null);

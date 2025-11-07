@@ -10,8 +10,8 @@ async function bootstrap() {
   app.use(
     session({
       secret: 'very-important-secret', // session 암호화에 사용될 키
-      resave: false,                   // 세션을 항상 저장할 지 여부
-      saveUninitialized: false,        // 초기화되지 않은 상태로 세션을 미리 만들어 저장
+      resave: false, // 세션을 항상 저장할 지 여부
+      saveUninitialized: false, // 초기화되지 않은 상태로 세션을 미리 만들어 저장
       cookie: { maxAge: 3600000 },
     }),
   );

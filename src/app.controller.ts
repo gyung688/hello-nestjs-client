@@ -1,11 +1,9 @@
-import { Controller, Get } from  '@nestjs/common';
+import { Controller, Get } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 
 @Controller()
 export class AppController {
-  constructor(
-    private configService: ConfigService,
-  ) {}
+  constructor(private configService: ConfigService) {}
 
   // @Get()
   // geConfig(): string {
